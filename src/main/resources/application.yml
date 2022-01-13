@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    username: ${DB_DAYOFF_USERNAME}
+    password: ${DB_DAYOFF_PASSWORD}
+    url: ${DB_DAYOFF_URL}
+#    url: jdbc:postgresql://localhost:5400/permissions
+  jpa:
+    hibernate:
+      ddl-auto: none
+    generate-ddl: false
+    properties:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  liquibase:
+    change-log: classpath:liquibase/changelog-master.yml
+    enabled: true
+
+server:
+  port: 8041
+
+client:
+  users:
+    int:
+      url: http://xazar.local/int/users/id/
+

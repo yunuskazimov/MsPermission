@@ -1,9 +1,8 @@
 spring:
   datasource:
-    username: ${DB_DAYOFF_USERNAME}
-    password: ${DB_DAYOFF_PASSWORD}
-    url: ${DB_DAYOFF_URL}
-#    url: jdbc:postgresql://localhost:5400/permissions
+    username: ${DB_PERMISSION_USERNAME}
+    password: ${DB_PERMISSION_PASSWORD}
+    url: ${DB_PERMISSION_URL}
   jpa:
     hibernate:
       ddl-auto: none
@@ -16,10 +15,10 @@ spring:
     enabled: true
 
 server:
-  port: 8041
+  port: ${MS_PORT}
 
 client:
   users:
     int:
-      url: http://xazar.local/int/users/id/
+      url: ${USER_CLIENT}
 

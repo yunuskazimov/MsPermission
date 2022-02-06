@@ -16,14 +16,20 @@ public class PermissionUtil {
         this.repo = repo;
     }
 
-    public PermissionEntity findById(Long id){
+    public PermissionEntity findById(Long id) {
         return repo.findById(id)
-                .orElseThrow(()->
+                .orElseThrow(() ->
                         new PermissionNotFoundException(ErrorCodes.NOT_FOUND));
     }
 
-    public List<PermissionEntity> findByUserId(Long userId) {
+    public List<PermissionEntity> findAllByUserId(Long userId) {
         return repo.findAllByUserId(userId)
+                .orElseThrow(() ->
+                        new PermissionNotFoundException(ErrorCodes.NOT_FOUND));
+    }
+
+    public PermissionEntity findByUserId(Long userId) {
+        return repo.findByUserId(userId)
                 .orElseThrow(() ->
                         new PermissionNotFoundException(ErrorCodes.NOT_FOUND));
     }

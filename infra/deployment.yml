@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-permission-deployment
+  labels:
+    app: ms-permission
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ms-permission
+  template:
+    metadata:
+      labels:
+        app: ms-permission
+    spec:
+      containers:
+        - env:
+            - name: DB_PERMISSION_URL
+              valueFrom:
+                secretKeyRef:
+                  key: MS_PERMISSION_URL
+                  name: ms.auth.secrets
+            - name: DB_PERMISSION_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGRES_USERNAME
+                  name: ms.auth.secrets
+            - name: DB_PERMISSION_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGRES_PASSWORD
+                  name: ms.auth.secrets
+            - name: MS_PORT
+              valueFrom:
+                secretKeyRef:
+                  key: MS_PERMISSION_PORT
+                  name: ms.auth.secrets
+            - name: USER_CLIENT
+              valueFrom:
+                secretKeyRef:
+                  key: CLINET_MS_USER_URL
+                  name: ms.auth.secrets
+          name: ms-permission
+          image: yunuskazimov94/ms-permission
+          ports:
+            - containerPort: 8052
+              protocol: TCP
+#          readinessProbe:
+#            httpGet:
+#              path: /readiness
+#              port: 8090
+#            initialDelaySeconds: 45
+#            periodSeconds: 15
+#          livenessProbe:
+#            httpGet:
+#              path: /liveness
+#              port: 8090
+#            initialDelaySeconds: 45
+#            periodSeconds: 15

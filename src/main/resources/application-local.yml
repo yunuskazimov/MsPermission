@@ -2,7 +2,7 @@ spring:
   datasource:
     username: xazar1
     password: xazar1
-    url: jdbc:postgresql://localhost:5400/dayoff
+    url: jdbc:postgresql://localhost:5400/permissions
   jpa:
     hibernate:
       ddl-auto: none
@@ -15,10 +15,10 @@ spring:
     enabled: true
 
 server:
-  port: 8041
+  port: 8052
 
 client:
   users:
     int:
-      url: http://localhost:8051/int/users/id/
+      url: http://localhost:8051/int/api/user/id
 
